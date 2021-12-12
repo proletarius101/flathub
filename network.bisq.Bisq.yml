@@ -32,8 +32,6 @@ modules:
         sha256: 02a26a5610246957930a8256912f156bb2d783b9226e0a45415d955b1137dde0
         url: https://bisq.network/downloads/v1.8.0/Bisq-64bit-1.8.0.deb
         dest-filename: Bisq.deb
-        only-arches:
-          - x86_64
         x-checker-data:
           type: anitya
           project-id: 241531
@@ -42,8 +40,6 @@ modules:
         url: https://bisq.network/downloads/v1.8.0/Bisq-64bit-1.8.0.deb.asc
         dest-filename: Bisq.deb.asc
         sha256: b9e0b24c9fa20e67dc4c31d82a6dd9c11ea71729826f521fab52619a4f28f381
-        only-arches:
-          - x86_64
         x-checker-data:
           type: anitya
           project-id: 241531
