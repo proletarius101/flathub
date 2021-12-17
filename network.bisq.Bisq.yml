@@ -18,6 +18,7 @@ modules:
     buildsystem: simple
     build-commands:
       - /usr/lib/sdk/openjdk17/installjdk.sh
+
   - name: bisq
     buildsystem: simple
     build-commands:
@@ -26,7 +27,7 @@ modules:
       - rm Bisq.deb
       - tar xf data.tar.xz
       - cp -r opt/bisq/lib /app/lib
-      - install -D opt/bisq/bin/Bisq /app/bin/Bisq
+      - install -Dm755 opt/bisq/bin/Bisq /app/bin/Bisq
     sources:
       - type: file
         sha256: 02a26a5610246957930a8256912f156bb2d783b9226e0a45415d955b1137dde0
@@ -52,11 +53,11 @@ modules:
           type: anitya
           project-id: 241531
           url-template: https://bisq.network/downloads/v$version/29CDFD3B.asc
+
   - name: icon
     buildsystem: simple
     build-commands:
-      - mkdir -p /app/share/icons/hicolor/512x512/apps
-      - cp icon_256x256@2x.png /app/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png
+      - install -Dpm644 icon_256x256@2x.png /app/share/icons/hicolor/512x512/apps/${FLATPAK_ID}.png
     sources:
       - type: file
         url: https://github.com/bisq-network/bisq/raw/v1.8.0/desktop/package/macosx/Bisq.iconset/icon_256x256%402x.png
@@ -66,17 +67,19 @@ modules:
           type: anitya
           project-id: 241531
           url-template: https://github.com/bisq-network/bisq/raw/v$version/desktop/package/macosx/Bisq.iconset/icon_256x256%402x.png
+
   - name: desktop-entry
     buildsystem: simple
     build-commands:
-      - install -D network.bisq.Bisq.desktop /app/share/applications/${FLATPAK_ID}.desktop
+      - install -Dpm644 network.bisq.Bisq.desktop /app/share/applications/${FLATPAK_ID}.desktop
     sources:
       - type: file
         path: network.bisq.Bisq.desktop
+
   - name: metadata
     buildsystem: simple
     build-commands:
-      - install -D network.bisq.Bisq.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.appdata.xml
+      - install -Dpm644 network.bisq.Bisq.appdata.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.appdata.xml
     sources:
       - type: file
         path: network.bisq.Bisq.appdata.xml
